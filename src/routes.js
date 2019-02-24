@@ -11,6 +11,7 @@ const flashMiddleware = require('./app/middlewares/flash')
 const FileController = require('./app/controllers/FileController')
 const SessionController = require('./app/controllers/SessionController')
 const UserController = require('./app/controllers/UserController')
+const DashboardController = require('./app/controllers/DashboardController')
 
 routes.use(flashMiddleware)
 
@@ -24,6 +25,6 @@ routes.post('/signup', upload.single('avatar'), UserController.store)
 
 routes.use('/app', authMiddleware)
 routes.get('/app/logout', SessionController.destroy)
-routes.get('/app/dashboard', (req, res) => res.render('dashboard'))
+routes.get('/app/dashboard', DashboardController.index)
 
 module.exports = routes
