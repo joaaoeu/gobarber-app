@@ -2,6 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const nunjucks = require('nunjucks')
+const flash = require('connect-flash')
 const path = require('path')
 const routes = require('./routes')
 
@@ -17,6 +18,7 @@ class App {
 
   middlewares () {
     this.express.use(express.urlencoded({ extended: false }))
+    this.express.use(flash())
     this.express.use(
       session({
         name: 'root',
